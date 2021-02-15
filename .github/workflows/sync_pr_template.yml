@@ -15,5 +15,6 @@ jobs:
     - name: Sync template file
       run: |
         cmp ./template/.github/PULL_REQUEST_TEMPLATE.md ./main/.github/PULL_REQUEST_TEMPLATE.md || cp ./template/.github/PULL_REQUEST_TEMPLATE.md ./main/.github/PULL_REQUEST_TEMPLATE.md
+        ls -la
         ls -la ./template/.github/
         ls -la ./main/.github/        
