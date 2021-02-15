@@ -19,4 +19,12 @@ jobs:
     - name: Sync template file
       run: |
         cmp ./template/.github/PULL_REQUEST_TEMPLATE.md ./main/.github/PULL_REQUEST_TEMPLATE.md || cp ./template/.github/PULL_REQUEST_TEMPLATE.md ./main/.github/PULL_REQUEST_TEMPLATE.md
-        echo $GITHUB_WORKSPACE
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v3
+      with:
+        path: ./main/
+        commit-message: sync with template repo
+        delete-branch: true
+        branch: gha-sync-pr-temp
+        branch-suffix: timestamp
+        reviewers: dmiller15
