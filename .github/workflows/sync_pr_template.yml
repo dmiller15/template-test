@@ -1,0 +1,19 @@
+on: push
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout This Repo
+      uses: actions/checkout@v2
+      with:
+        path: main
+    - name: Checkout Template Repo
+      uses: actions/checkout@v2
+      with:
+        repository: dmiller15/template-test
+        path: template
+    - name: Sync template file
+      run: |
+        cmp ./template/.github/PULL_REQUEST_TEMPLATE.md ./main/.github/PULL_REQUEST_TEMPLATE.md || cp ./template/.github/PULL_REQUEST_TEMPLATE.md ./main/.github/PULL_REQUEST_TEMPLATE.md
+        ls -la ./template/.github/
+        ls -la ./main/.github/        
