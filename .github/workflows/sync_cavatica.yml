@@ -17,6 +17,6 @@ jobs:
         SB_AUTH_TOKEN: ${{ secrets.CAVATICA_AUTH_TOKEN }} 
         SB_API_ENDPOINT: https://cavatica-api.sbgenomics.com/v2
       with:
-        entrypoint: |
+        entrypoint: >
           git diff --exit-code HEAD..HEAD^ cat.cwl
-          if [ $? -eq 1 ]; then sbpack . kfdrc-harmonization/kf-reference-pipeline/cat cat.cwl; else echo "no changes will not push"; fi
+          && if [ $? -eq 1 ]; then sbpack . kfdrc-harmonization/kf-reference-pipeline/cat cat.cwl; else echo "no changes will not push"; fi
