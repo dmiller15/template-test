@@ -13,7 +13,7 @@ jobs:
         path: main
     - name: Check if diff
       run: |
-        git diff --exit-code HEAD..HEAD^ cat.cwl
+        git diff --exit-code HEAD~ cat.cwl
     - name: Return previous exit code
       if: success()
       run: echo "exit code was $?"
