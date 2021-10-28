@@ -10,13 +10,14 @@ jobs:
     - name: Checkout This Repo
       uses: actions/checkout@v2
       with:
-        path: main
+        fetch-depth: 5
     - name: Check if diff
       run: |
         git diff --exit-code HEAD~ cat.cwl
     - name: Return previous exit code
       if: success()
-      run: echo "exit code was $?"
+      run: |
+        echo "exit code was $?"
 #    - name: Cavatica Push Cat
 #      uses: docker://dmiller15/sbpack:20211007
 #      env: 
