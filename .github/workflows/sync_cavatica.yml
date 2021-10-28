@@ -19,4 +19,4 @@ jobs:
       with:
         entrypoint: >
           git diff --exit-code HEAD..HEAD^ cat.cwl
-          && if [ $? -eq 1 ]; then sbpack . kfdrc-harmonization/kf-reference-pipeline/cat cat.cwl; else echo "no changes will not push"; fi
+          && if [ $? -eq 1 ]; then sbpack . kfdrc-harmonization/kf-reference-pipeline/cat cat.cwl; else echo 'no changes will not push'; fi
