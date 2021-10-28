@@ -10,20 +10,17 @@ jobs:
     - name: Checkout This Repo
       uses: actions/checkout@v2
       with:
-        fetch-depth: 5
+        fetch-depth: 2
     - name: Check if diff
       run: |
         git diff --exit-code HEAD~ cat.cwl
-    - name: Run if diff 
-      if: failure() 
-      run: |
-        echo "there was a diff"
-#    - name: Cavatica Push Cat
-#      uses: docker://dmiller15/sbpack:20211007
-#      env: 
-#        SB_AUTH_TOKEN: ${{ secrets.CAVATICA_AUTH_TOKEN }} 
-#        SB_API_ENDPOINT: https://cavatica-api.sbgenomics.com/v2
-#      with:
-#        entrypoint: >
-#          git diff --exit-code HEAD..HEAD^ cat.cwl
-#          && if [ $? -eq 1 ]; then sbpack . kfdrc-harmonization/kf-reference-pipeline/cat cat.cwl; else echo 'no changes will not push'; fi
+    - name: Cavatica Push Cat
+      if: failure()
+      uses: docker://dmiller15/sbpack:20211007
+      env: 
+        SB_AUTH_TOKEN: ${{ secrets.CAVATICA_AUTH_TOKEN }} 
+        SB_API_ENDPOINT: https://cavatica-api.sbgenomics.com/v2
+      with:
+        entrypoint: sbpack
+        args: |
+          . kfdrc-harmonization/kf-reference-pipeline/cat cat.cwl
