@@ -22,3 +22,4 @@ outputs:
   example_out:
     type: stdout
 stdout: output.txt
+
