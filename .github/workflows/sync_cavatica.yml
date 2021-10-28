@@ -14,10 +14,10 @@ jobs:
     - name: Check if diff
       run: |
         git diff --exit-code HEAD~ cat.cwl
-    - name: Return previous exit code
-      if: success()
+    - name: Run if diff 
+      if: failure() 
       run: |
-        echo "exit code was $?"
+        echo "there was a diff"
 #    - name: Cavatica Push Cat
 #      uses: docker://dmiller15/sbpack:20211007
 #      env: 
